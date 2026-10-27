@@ -1,0 +1,14 @@
+﻿PS> # raw TCP session with the gateway (no Java client): '>>' = sent, '<<' = received
+>> CLUSTER|reqId=1
+<< OK|primary=N1|epoch=1|count=2|n0.id=N1|n0.up=true|n0.role=PRIMARY|n0.orders=0|n1.id=N2|n1.up=true|n1.role=BACKUP|n1.orders=0|reqId=1
+>> HELLO|role=CUSTOMER|id=RAW1|reqId=2
+<< OK|reqId=2
+>> GET_MENU|restaurant=R2|reqId=3
+<< OK|servedBy=N1|role=PRIMARY|restaurant=R2|name=Dosa+Corner|count=3|m0.id=R2-M1|m0.name=Masala+Dosa|m0.price=120|m1.id=R2-M2|m1.name=Rava+Idli|m1.price=90|m2.id=R2-M3|m2.name=Filter+Coffee|m2.price=50|reqId=3
+>> PLACE_ORDER|restaurant=R2|items=R2-M1x1%2CR2-M3x1|reqId=4
+<< EVENT|event=PLACED|orderId=O-1|seq=1|status=PLACED|customer=RAW1|restaurant=R2|rider=|total=170|items=R2-M1x1%2CR2-M3x1
+<< OK|servedBy=N1|role=PRIMARY|event=PLACED|retry=false|orderId=O-1|customer=RAW1|restaurant=R2|items=R2-M1x1%2CR2-M3x1|total=170|status=PLACED|rider=|version=1|requestId=4|createdAt=1790662305285|reqId=4
+>> UPDATE_STATUS|orderId=O-1|status=DELIVERED|reqId=5
+<< ERROR|code=INVALID_TRANSITION|reason=O-1+is+PLACED%2C+it+cannot+become+DELIVERED|reqId=5
+>> THIS IS NOT A VALID LINE|x
+<< ERROR|code=BAD_REQUEST|reason=bad+field+%27x%27

@@ -1,0 +1,24 @@
+﻿PS> .\scripts\build.ps1
+Build OK: 21 source files compiled into out\
+
+PS> java -cp out tests.TestRunner
+MiniSwiggy automated tests
+--------------------------
+[PASS] protocol: encode/decode keeps special characters (5 ms)
+[PASS] store: status moves forward only, and only by the right actor (18 ms)
+[PASS] store: applying an older replica version is ignored (0 ms)
+[PASS] ordering: hold-back buffer re-orders, drops duplicates, skips lost gaps (4 ms)
+[PASS] replication: an order placed via the gateway is on BOTH nodes (16 ms)
+[PASS] load balancing: reads are spread round-robin over N1 and N2 (16 ms)
+[PASS] concurrency: 20 customers at once get 20 unique orders; replicas identical (37 ms)
+[PASS] idempotency: a retried PLACE_ORDER (same reqId) is applied once (6 ms)
+[PASS] roles: the backup refuses writes with NOT_PRIMARY (1 ms)
+[PASS] fencing: REPLICATE from an old epoch is refused (3 ms)
+[PASS] pub/sub: customer receives all 6 live updates, seq 1..6 in order (17 ms)
+       (write was held 3074 ms until failover completed)
+[PASS] FAILOVER: kill primary N1 -> detected by heartbeats, N2 promoted, no data lost (3081 ms)
+[PASS] RECOVERY: restarted N1 re-syncs from N2 and rejoins as BACKUP (901 ms)
+       (4 event(s) arrived out of order and were re-sequenced)
+[PASS] ordering: with 0-300 ms network jitter, updates are still shown in order (340 ms)
+--------------------------
+14 passed, 0 failed
