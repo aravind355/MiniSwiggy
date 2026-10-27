@@ -30,7 +30,7 @@ src/client/    CustomerClient, RestaurantClient, RiderClient, GatewayClient, Ord
 src/demo/      DemoRunner: scripted end-to-end demo with real processes
 tests/         TestRunner: 14 automated tests (no JUnit needed)
 scripts/       build / run-tests / run-demo for Windows (.ps1) and Linux/macOS (.sh)
-docs/          the project documents (.docx and .doc):
+docs/          the project documents (.docx):
                ArchitectureofApp_23MCCE11, ParadigmsandAlgorithms_23MCCE11,
                RequirementSpecificationSimpleApp_23MCCE11, Tutorial_23MCCE11
 screenshots/   terminal output captured from the demo and test runs (see screenshots/README.md)
